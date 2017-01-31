@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>weatherwizard</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/animate.css/animate.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js scripts/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body>
+    <div id="app" class="app" ng-class="{'hidden': !vm.location || !vm.weather, 'animated rollIn': vm.location && vm.weather}" ng-app="weatherWizard" ng-controller="mainCtrl as vm" ng-cloak>
+      <h1>
+        {{vm.location.name + ', ' + vm.location.region}}
+      </h1>
+      <h2 ng-if ="vm.far" class="animated slideInLeft">
+        {{vm.weather.temp_f + '&deg;F'}}
+      </h2>
+      <h2 ng-if="!vm.far" class="animated slideInLeft">
+        {{vm.weather.temp_c + '&deg;C'}}
+      </h2>
+
+      <h3>
+        {{vm.weather.condition.text}}
+      </h3>
+
+      <div class="icon-container">
+        <img ng-src="{{vm.weather.condition.icon}}" alt="{{vm.weather.condition.text + ' icon'}}" />
+      </div>
+
+      <button ng-click="vm.far = !vm.far">Switch Temp Units</button>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/plugins.js -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
